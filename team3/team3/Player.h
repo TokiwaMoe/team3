@@ -43,7 +43,7 @@ public:
 	void update();
 	void draw();
 
-	int geMousetPosX();
+	int getMousePosX();
 	int getMousePosY();
 	int getStartPosX();
 	int getStartPosY();
@@ -54,9 +54,10 @@ public:
 	int getRadius();
 	int getArrows();
 	int getMouseInput();
+	int getMouseInputOld();
 
 	void setMousePosX(int mouseposx);
-	void setMousesY(int mouseposy);
+	void setMousePosY(int mouseposy);
 	void setStartPosX(int startposx);
 	void setStartPosY(int startposy);
 	void setEndPosX(int endposx);

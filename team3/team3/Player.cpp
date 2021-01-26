@@ -116,7 +116,7 @@ void Player::update() {
 	}
 }
 
-int Player::geMousetPosX() { return MousePosX; }
+int Player::getMousePosX() { return MousePosX; }
 int Player::getMousePosY() { return  MousePosY; }
 int Player::getStartPosX() { return  startPosX; }
 int Player::getStartPosY() { return startPosY; }
@@ -127,11 +127,11 @@ int Player::getPlayerPosY() { return PlayerPosY; }
 int Player::getRadius() { return Radius; }
 int Player::getArrows() { return arrows; }
 int Player::getMouseInput() { return MouseInput; }
-
+int Player::getMouseInputOld() { return  MouseInputOld; }
 
 
 void Player::setMousePosX(int mouseposx) { this->MousePosX = mouseposx; }
-void Player::setMousesY(int mouseposy) { this->MousePosY = mouseposy; }
+void Player::setMousePosY(int mouseposy) { this->MousePosY = mouseposy; }
 void Player::setStartPosX(int startposx) { this->startPosX = startposx; }
 void Player::setStartPosY(int startposy) { this->startPosY = startposy; }
 void Player::setEndPosX(int endposx) { this->endPosX = endposx; }
