@@ -18,7 +18,8 @@ private:
 	float PlayerPosX;
 	float PlayerPosY;
 	int Radius;
-
+	int isArrows;
+	
 	//ˆÚ“®•Ï”
 	int maxflame;
 	int flame;
@@ -55,6 +56,7 @@ public:
 	int getArrows();
 	int getMouseInput();
 	int getMouseInputOld();
+	int getIsArrows();
 
 	void setMousePosX(int mouseposx);
 	void setMousePosY(int mouseposy);

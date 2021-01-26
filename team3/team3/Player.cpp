@@ -27,6 +27,7 @@ Player::Player(
 	Drawflag = 0;
 	MouseInput = 0;
 	MouseInputOld = 0;
+	isArrows = 0;
 
 	flame++;
 
@@ -85,6 +86,7 @@ void Player::update() {
 		if (MouseInputOld == 1 && MouseInput != 1) {
 			endPosX = MousePosX;
 			endPosY = MousePosY;
+			isArrows = 1;
 		}
 	}
 
@@ -94,19 +96,22 @@ void Player::update() {
 	}
 
 	if (MouseInputOld == 0 && MouseInput == 0) {
-
-
 		flame = flame + 1;
 
-		if (flame >= 0 && flame <= maxflame) {
+		if (isArrows = 1) {
+			if (flame >= 0 && flame <= maxflame) {
 
-			x = static_cast<float>(flame) / static_cast<float>(maxflame);
+				x = static_cast<float>(flame) / static_cast<float>(maxflame);
 
-			PlayerPosX = startPosX + (endPosX - startPosX) * (sin(x * PI / 2));
-			PlayerPosY = startPosY + (endPosY - startPosY) * (sin(x * PI / 2));
+				PlayerPosX = startPosX + (endPosX - startPosX) * (sin(x * PI / 2));
+				PlayerPosY = startPosY + (endPosY - startPosY) * (sin(x * PI / 2));
 
+				if (PlayerPosX == endPosX && PlayerPosY == endPosY) {
+					isArrows = 0;
+				}
+
+			}
 		}
-
 	}
 
 
@@ -128,6 +133,8 @@ int Player::getRadius() { return Radius; }
 int Player::getArrows() { return arrows; }
 int Player::getMouseInput() { return MouseInput; }
 int Player::getMouseInputOld() { return  MouseInputOld; }
+int Player::getIsArrows() { return isArrows; }
+
 
 
 void Player::setMousePosX(int mouseposx) { this->MousePosX = mouseposx; }

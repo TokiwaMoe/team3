@@ -13,8 +13,8 @@ Key::Key(int posx, int posy, int radius, int isget) {
 Key::~Key() {}
 
 void Key::update(Player* player) {
-	if (player->getPlayerPosX() <= PosX + player->getRadius() * 2 && PosX <= player->getPlayerPosX() + player->getRadius()) {
-		if (player->getPlayerPosY() <= PosY + player->getRadius() * 2 && PosY <= player->getPlayerPosY() + player->getRadius()) {
+	if (player->getPlayerPosX() <= PosX + Radius * 2 && PosX <= player->getPlayerPosX() + player->getRadius()) {
+		if (player->getPlayerPosY() <= PosY + Radius * 2 && PosY <= player->getPlayerPosY() + player->getRadius()) {
 			isGet = 1;
 		}
 	}
@@ -40,6 +40,8 @@ void Key::draw(Player* player) {
 		PosY = player->getPlayerPosY();
 		DrawExtendGraph(PosX - 5, PosY - 30, PosX + 5, PosY - 20, key, TRUE);
 	}
+
+	DrawFormatString(0, 180, GetColor(255, 255, 255), "isGet: %d", isGet);
 }
 
 
