@@ -29,17 +29,18 @@ private:
 	int arrows;
 public:
 	Player(
-    float startPosX,
-    float startPosY,
-    float endPosX,
-    float endPosY,
-    float playerPosX,
-    float playerPosY,
-    int radius
-  );
+		float startPosX,
+		float startPosY,
+		float endPosX,
+		float endPosY,
+		float playerPosX,
+		float playerPosY,
+		int radius,
+		int arrows
+	);
 
-  ~Player();
-  void update();
+	~Player();
+	void update();
 	void draw();
 
 	int geMousetPosX();
@@ -51,6 +52,8 @@ public:
 	int getPlayerPosX();
 	int getPlayerPosY();
 	int getRadius();
+	int getArrows();
+	int getMouseInput();
 
 	void setMousePosX(int mouseposx);
 	void setMousesY(int mouseposy);
@@ -61,5 +64,6 @@ public:
 	void setPlayerPosX(int playerposx);
 	void setPlayerPosY(int playerposy);
 	void setRadius(int radius);
+	void setArrows(int arrows);
 
 };

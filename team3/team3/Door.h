@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Key.h"
 
 class Door {
 private:
@@ -8,18 +9,20 @@ private:
 	int door[8];
 	int Timer;
 	int i;
-	int Scene;
-	
+	int isScene;
+
 public:
-	Door(int posx, int posy);
+	Door(int posx, int posy, int isScene);
 	~Door();
 
-	void update(Player* player);
+	void update(Player* player, Key* key);
 	void draw();
 
 	int getPosX();
 	int getPosY();
+	int getIsScene();
 
 	void setPosX(int posx);
 	void setPosY(int posy);
+	void setIsScene(int isScene);
 };

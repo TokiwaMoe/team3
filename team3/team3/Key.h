@@ -8,7 +8,7 @@ private:
 	int Radius;
 	int isGet;
 	int key;
-	
+
 public:
 	Key(int posx, int posy, int radius, int isget);
 	~Key();

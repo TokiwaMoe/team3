@@ -32,7 +32,7 @@ void Key::setIsGet(int isget) { this->isGet = isget; }
 
 void Key::draw(Player* player) {
 	if (isGet == 0) {
-		DrawGraph(PosX, PosY, key, TRUE);
+		DrawGraph(PosX - Radius, PosY - Radius, key, TRUE);
 	}
 
 	if (isGet == 1) {

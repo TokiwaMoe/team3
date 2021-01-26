@@ -4,13 +4,14 @@
 #include "math.h"
 
 Player::Player(
-    float startPosX,
-    float startPosY,
-    float endPosX,
-    float endPosY,
-    float playerPosX,
-    float playerPosY,
-    int radius
+	float startPosX,
+	float startPosY,
+	float endPosX,
+	float endPosY,
+	float playerPosX,
+	float playerPosY,
+	int radius,
+	int arrows
 ) {
 	this->startPosX = startPosX;
 	this->startPosY = startPosY;
@@ -19,6 +20,7 @@ Player::Player(
 	this->PlayerPosX = playerPosX;
 	this->PlayerPosY = playerPosY;
 	this->Radius = radius;
+	this->arrows = arrows;
 	PI = 3.141592;
 	maxflame = 50;
 	flame = 0;
@@ -36,9 +38,9 @@ Player::~Player() {}
 void Player::update() {
 	MouseInputOld = MouseInput;
 	MouseInput = GetMouseInput();
-	
+
 	GetMousePoint(&MousePosX,
-   &MousePosY);
+		&MousePosY);
 
 	if (arrows == 0) {
 		//trigger
@@ -112,10 +114,6 @@ void Player::update() {
 
 		Drawflag = 0;
 	}
-
-	if (MouseInput == 2) {
-		arrows = 0;
-	}
 }
 
 int Player::geMousetPosX() { return MousePosX; }
@@ -127,6 +125,10 @@ int Player::getEndPosY() { return endPosY; }
 int Player::getPlayerPosX() { return PlayerPosX; }
 int Player::getPlayerPosY() { return PlayerPosY; }
 int Player::getRadius() { return Radius; }
+int Player::getArrows() { return arrows; }
+int Player::getMouseInput() { return MouseInput; }
+
+
 
 void Player::setMousePosX(int mouseposx) { this->MousePosX = mouseposx; }
 void Player::setMousesY(int mouseposy) { this->MousePosY = mouseposy; }
@@ -137,6 +139,8 @@ void Player::setEndPosY(int endposy) { this->endPosY = endposy; }
 void Player::setPlayerPosX(int playerposx) { this->PlayerPosX = playerposx; }
 void Player::setPlayerPosY(int playerposy) { this->PlayerPosY = playerposy; }
 void Player::setRadius(int radius) { this->Radius = radius; }
+void Player::setArrows(int arrows) { this->arrows = arrows; }
+
 
 void Player::draw() {
 	if (Drawflag == 1) {
@@ -159,7 +163,7 @@ void Player::draw() {
 		"エンドの位置X : %f  エンドの位置 : %f",
 		endPosX,
 		endPosY);
-	
+
 	DrawFormatString(0,
 		60,
 		GetColor(255, 255, 255),
