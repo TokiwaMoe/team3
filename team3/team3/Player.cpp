@@ -97,6 +97,7 @@ void Player::update() {
 
 	if (MouseInputOld == 0 && MouseInput == 0) {
 		flame = flame + 1;
+		isArrows = 1;
 
 		if (isArrows = 1) {
 			if (flame >= 0 && flame <= maxflame) {
@@ -106,11 +107,11 @@ void Player::update() {
 				PlayerPosX = startPosX + (endPosX - startPosX) * (sin(x * PI / 2));
 				PlayerPosY = startPosY + (endPosY - startPosY) * (sin(x * PI / 2));
 
-				if (PlayerPosX == endPosX && PlayerPosY == endPosY) {
-					isArrows = 0;
-				}
-
 			}
+		}
+
+		else {
+			PlayerPosY = PlayerPosY + 1;
 		}
 	}
 

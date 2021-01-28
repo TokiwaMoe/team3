@@ -1,0 +1,86 @@
+diff a/team3/team3/main.cpp b/team3/team3/main.cpp	(rejected hunks)
+@@ -312,35 +312,65 @@
+ 				player->setPlayerPosX(64);
+ 				player->setPlayerPosY(686);
+ 				key->setPosX(1170);
+-				key->setPosY(160);
++				key->setPosY(120);
+ 				door->setPosX(1370);
+-				door->setPosY(640);
++				door->setPosY(600);
+ 			}
+ 
+-			if (mapno == 3) {
+-				player->setStartPosX(48);
++			else if (mapno == 3) {
++				player->setStartPosX(30);
+ 				player->setStartPosY(48);
+-				player->setEndPosX(48);
++				player->setEndPosX(30);
+ 				player->setEndPosY(48);
+-				player->setPlayerPosX(48);
++				player->setPlayerPosX(30);
+ 				player->setPlayerPosY(48);
+-				key->setPosX(1400);
++				key->setPosX(1450);
+ 				key->setPosY(690);
+ 				door->setPosX(750);
+-				door->setPosY(375);
++				door->setPosY(320);
+ 			}
+ 
+-			if (mapno == 4) {
+-				player->setStartPosX(64);
+-				player->setStartPosY(48);
+-				player->setEndPosX(64);
+-				player->setEndPosY(48);
+-				player->setPlayerPosX(64);
+-				player->setPlayerPosY(48);
+-				key->setPosX(1400);
+-				key->setPosY(690);
+-				door->setPosX(750);
+-				door->setPosY(375);
++			else if (mapno == 4) {
++				player->setStartPosX(134);
++				player->setStartPosY(134);
++				player->setEndPosX(134);
++				player->setEndPosY(134);
++				player->setPlayerPosX(134);
++				player->setPlayerPosY(134);
++				key->setPosX(1404);
++				key->setPosY(140);
++				door->setPosX(1404);
++				door->setPosY(580);
++			}
++
++			else if (mapno == 5) {
++				player->setStartPosX(134);
++				player->setStartPosY(134);
++				player->setEndPosX(134);
++				player->setEndPosY(134);
++				player->setPlayerPosX(134);
++				player->setPlayerPosY(134);
++				key->setPosX(1404);
++				key->setPosY(140);
++				door->setPosX(1404);
++				door->setPosY(580);
++			}
++
++			else if (mapno == 6) {
++				player->setStartPosX(134);
++				player->setStartPosY(134);
++				player->setEndPosX(134);
++				player->setEndPosY(134);
++				player->setPlayerPosX(134);
++				player->setPlayerPosY(134);
++				key->setPosX(1404);
++				key->setPosY(140);
++				door->setPosX(1404);
++				door->setPosY(580);
++			}
++
++			if (mapno == MAP_NUM) {
++				mapno = 0;
+ 			}
+ 			
+ 		}

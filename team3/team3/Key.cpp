@@ -1,6 +1,5 @@
 #include "DxLib.h"
 #include "Key.h"
-
 Key::Key(int posx, int posy, int radius, int isget) {
 	this->PosX = posx;
 	this->PosY = posy;
@@ -13,8 +12,8 @@ Key::Key(int posx, int posy, int radius, int isget) {
 Key::~Key() {}
 
 void Key::update(Player* player) {
-	if (player->getPlayerPosX() <= PosX + Radius * 2 && PosX <= player->getPlayerPosX() + player->getRadius()) {
-		if (player->getPlayerPosY() <= PosY + Radius * 2 && PosY <= player->getPlayerPosY() + player->getRadius()) {
+	if (player->getPlayerPosX() - player-> getRadius() <= PosX + Radius && PosX <= player->getPlayerPosX() + player->getRadius()) {
+		if (player->getPlayerPosY() - player->getRadius() <= PosY + Radius * 2 && PosY <= player->getPlayerPosY() + player->getRadius()) {
 			isGet = 1;
 		}
 	}
