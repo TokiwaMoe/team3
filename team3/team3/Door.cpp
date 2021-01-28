@@ -48,8 +48,6 @@ void Door::setIsScene(int isScene) { this->isScene = isScene; }
 void Door::draw() {
 	DrawGraph(PosX, PosY, door[i], TRUE);
 
-	if (isScene == 1) {
-		DrawFormatString(PosX, PosY - 20, GetColor(255, 255, 255), "当たったよ！");
-	}
+	DrawFormatString(0, 200, GetColor(255, 255, 255), "ドアのXの位置:%d  ドアのYの位置:%d", PosX, PosY);
 }
 
