@@ -265,13 +265,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 					}
 
-					/*else {
-						if (player->getEndPosY() == player->getPlayerPosY()) {
-							player->setPlayerPosY(player->getPlayerPosY() + 1);
-							player->setEndPosY(player->getPlayerPosY());
-						}
-					}*/
-
 					//è„
 					if (map1[static_cast<int>(player->getPlayerPosY() - player->getRadius() - 1) / blocksize][static_cast<int>(player->getPlayerPosX() - player->getRadius()) / blocksize] == 1 &&
 						map1[static_cast<int>(player->getPlayerPosY() - player->getRadius() - 1) / blocksize][static_cast<int>(player->getPlayerPosX() + player->getRadius()) / blocksize] == 1) {

@@ -110,15 +110,12 @@ void Player::update() {
 
 		}
 
-		else {
+		if (PlayerPosY >= endPosY) {
 			isArrows = 0;
 		}
 	}
 
 	if (isArrows == 0) {
-		flame = 0;
-		flame++;
-		PlayerPosY = PlayerPosY + 1;
 		PlayerPosY = PlayerPosY + 9.8 * (flame / 50.0);
 	}
 
