@@ -23,6 +23,7 @@ Player::Player(
 	this->Radius = radius;
 	this->arrows = arrows;
 	this->isArrows = isArrows;
+	this->drop = drop;
 	PI = 3.141592;
 	maxflame = 50;
 	flame = 0;
@@ -116,7 +117,8 @@ void Player::update() {
 	}
 
 	if (isArrows == 0) {
-		PlayerPosY = PlayerPosY + 9.8 * (flame / 50.0);
+		drop= 9.8 * (flame / 50.0);
+		PlayerPosY = PlayerPosY + drop;
 	}
 
 
@@ -139,7 +141,7 @@ int Player::getArrows() { return arrows; }
 int Player::getMouseInput() { return MouseInput; }
 int Player::getMouseInputOld() { return  MouseInputOld; }
 int Player::getIsArrows() { return isArrows; }
-
+int Player::getDrop() { return drop; }
 
 
 void Player::setMousePosX(int mouseposx) { this->MousePosX = mouseposx; }
@@ -153,6 +155,7 @@ void Player::setPlayerPosY(int playerposy) { this->PlayerPosY = playerposy; }
 void Player::setRadius(int radius) { this->Radius = radius; }
 void Player::setArrows(int arrows) { this->arrows = arrows; }
 void Player::setIsArrows(int isArrows) { this->isArrows = isArrows; }
+void Player::setDrop(int drop) { this->drop = drop; }
 
 
 void Player::draw() {

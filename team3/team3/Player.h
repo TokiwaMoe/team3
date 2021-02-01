@@ -18,6 +18,7 @@ private:
 	float PlayerPosX;
 	float PlayerPosY;
 	int Radius;
+	int drop;
 	int isArrows;
 	
 	//ˆÚ“®•Ï”
@@ -58,6 +59,7 @@ public:
 	int getMouseInput();
 	int getMouseInputOld();
 	int getIsArrows();
+	int getDrop();
 
 	void setMousePosX(int mouseposx);
 	void setMousePosY(int mouseposy);
@@ -70,5 +72,6 @@ public:
 	void setRadius(int radius);
 	void setArrows(int arrows);
 	void setIsArrows(int isArrows);
+	void setDrop(int drop);
 
 };
