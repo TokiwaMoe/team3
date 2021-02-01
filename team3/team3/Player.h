@@ -37,7 +37,8 @@ public:
 		float playerPosX,
 		float playerPosY,
 		int radius,
-		int arrows
+		int arrows,
+		int isArrows
 	);
 
 	~Player();
@@ -68,5 +69,6 @@ public:
 	void setPlayerPosY(int playerposy);
 	void setRadius(int radius);
 	void setArrows(int arrows);
+	void setIsArrows(int isArrows);
 
 };

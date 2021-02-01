@@ -39,8 +39,6 @@ void Key::draw(Player* player) {
 		PosY = player->getPlayerPosY();
 		DrawExtendGraph(PosX - 5, PosY - 30, PosX + 5, PosY - 20, key, TRUE);
 	}
-
-	DrawFormatString(0, 180, GetColor(255, 255, 255), "isGet: %d", isGet);
 }
 
 

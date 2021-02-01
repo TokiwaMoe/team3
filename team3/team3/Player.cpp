@@ -11,7 +11,8 @@ Player::Player(
 	float playerPosX,
 	float playerPosY,
 	int radius,
-	int arrows
+	int arrows,
+	int isArrows
 ) {
 	this->startPosX = startPosX;
 	this->startPosY = startPosY;
@@ -21,13 +22,13 @@ Player::Player(
 	this->PlayerPosY = playerPosY;
 	this->Radius = radius;
 	this->arrows = arrows;
+	this->isArrows = isArrows;
 	PI = 3.141592;
 	maxflame = 50;
 	flame = 0;
 	Drawflag = 0;
 	MouseInput = 0;
 	MouseInputOld = 0;
-	isArrows = 0;
 
 	flame++;
 
@@ -86,7 +87,6 @@ void Player::update() {
 		if (MouseInputOld == 1 && MouseInput != 1) {
 			endPosX = MousePosX;
 			endPosY = MousePosY;
-			isArrows = 1;
 		}
 	}
 
@@ -98,21 +98,28 @@ void Player::update() {
 	if (MouseInputOld == 0 && MouseInput == 0) {
 		flame = flame + 1;
 		isArrows = 1;
+	}
 
-		if (isArrows = 1) {
-			if (flame >= 0 && flame <= maxflame) {
+	if (isArrows == 1) {
+		if (flame >= 0 && flame <= maxflame) {
 
-				x = static_cast<float>(flame) / static_cast<float>(maxflame);
+			x = static_cast<float>(flame) / static_cast<float>(maxflame);
 
-				PlayerPosX = startPosX + (endPosX - startPosX) * (sin(x * PI / 2));
-				PlayerPosY = startPosY + (endPosY - startPosY) * (sin(x * PI / 2));
+			PlayerPosX = startPosX + (endPosX - startPosX) * (sin(x * PI / 2));
+			PlayerPosY = startPosY + (endPosY - startPosY) * (sin(x * PI / 2));
 
-			}
 		}
 
 		else {
-			PlayerPosY = PlayerPosY + 1;
+			isArrows = 0;
 		}
+	}
+
+	if (isArrows == 0) {
+		flame = 0;
+		flame++;
+		PlayerPosY = PlayerPosY + 1;
+		PlayerPosY = PlayerPosY + 9.8 * (flame / 50.0);
 	}
 
 
@@ -148,6 +155,7 @@ void Player::setPlayerPosX(int playerposx) { this->PlayerPosX = playerposx; }
 void Player::setPlayerPosY(int playerposy) { this->PlayerPosY = playerposy; }
 void Player::setRadius(int radius) { this->Radius = radius; }
 void Player::setArrows(int arrows) { this->arrows = arrows; }
+void Player::setIsArrows(int isArrows) { this->isArrows = isArrows; }
 
 
 void Player::draw() {
@@ -157,7 +165,7 @@ void Player::draw() {
 
 	DrawGraph(PlayerPosX - Radius, PlayerPosY - Radius, character, TRUE);
 
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "マウスの状態 : %d", MouseInput);
+	/*DrawFormatString(0, 0, GetColor(255, 255, 255), "マウスの状態 : %d", MouseInput);
 	DrawFormatString(0,
 		20,
 		GetColor(255, 255, 255),
@@ -195,5 +203,5 @@ void Player::draw() {
 
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "X : %f", x);
 
-	DrawFormatString(0, 140, GetColor(255, 255, 255), "flame : %d", flame);
+	DrawFormatString(0, 140, GetColor(255, 255, 255), "flame : %d", flame);*/
 }

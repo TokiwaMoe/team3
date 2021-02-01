@@ -28,16 +28,21 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	//画像などのリソースデータの変数宣言と読み込み
 	int block = LoadGraph("block.png");
 	int background = LoadGraph("background.png");
-	int title = LoadGraph("title.png");
-
-
+	int title[21];
+	LoadDivGraph("title.png", 21, 21, 1, 1500, 800, title);
+	int gameclear = LoadGraph("gameclear.png");
+	int gameover = LoadGraph("gameover.png");
 
 	//ゲームループで使う変数の宣言
 	char keys[256] = { 0 }; //最新のキーボード情報用
 	char oldkeys[256] = { 0 };//1ループ（フレーム）前のキーボード情報
-	Player* player = new Player(64, 544, 64, 732, 64, 732, 16, 0);
+	Player* player = new Player(64, 544, 64, 732, 64, 732, 16, 0,0);
 	Key* key = new Key(1170, 160, 10, 0);
 	Door* door = new Door(1370, 544, 0);
+
+	//タイトルアニメーション
+	int TitleTimer = 0;
+	int i = 0;
 
 	//マップ変数
 	int blocksize = 32;
@@ -203,7 +208,19 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				Scene = 1;
 			}
 
-			DrawGraph(0, 0, title, true);
+			TitleTimer += 1;
+
+			if (TitleTimer == 6)
+			{
+				i = i + 1;
+				if (i == 21)
+				{
+					i = 0;
+				}
+				TitleTimer = 0;
+			}
+
+			DrawGraph(0, 0, title[i], true);
 
 			break;
 
@@ -248,12 +265,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 					}
 
-					else {
+					/*else {
 						if (player->getEndPosY() == player->getPlayerPosY()) {
-							player->setPlayerPosY(player->getPlayerPosY() + 0.1);
+							player->setPlayerPosY(player->getPlayerPosY() + 1);
 							player->setEndPosY(player->getPlayerPosY());
 						}
-					}
+					}*/
 
 					//上
 					if (map1[static_cast<int>(player->getPlayerPosY() - player->getRadius() - 1) / blocksize][static_cast<int>(player->getPlayerPosX() - player->getRadius()) / blocksize] == 1 &&
@@ -616,11 +633,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			break;
 
 		case 5:
-
+			DrawGraph(0, 0, gameclear, true);
 			break;
 
 		case 6:
-
+			DrawGraph(0, 0, gameover, true);
 			break;
 
 		}
