@@ -1,4 +1,5 @@
 #pragma once
+#include "Stage.h"
 
 class Player {
 private:
@@ -15,10 +16,12 @@ private:
 	int character;
 
 	//ÉvÉåÉCÉÑÅ[ïœêî
-	float PlayerPosX;
-	float PlayerPosY;
-	int Radius;
-	int drop;
+	float playerPosX;
+	float playerPosY;
+	float playerOldPosX;
+	float playerOldPosY;
+	int radius;
+	float drop;
 	int isArrows;
 	
 	//à⁄ìÆïœêî
@@ -43,7 +46,9 @@ public:
 	);
 
 	~Player();
-	void update();
+	void update(Stage* stage);
+	void move();
+	void collide2Stage(Stage* stage);
 	void draw();
 
 	int getMousePosX();
@@ -60,18 +65,18 @@ public:
 	int getMouseInputOld();
 	int getIsArrows();
 	int getDrop();
+	int getPlayerOldPosY();
 
-	void setMousePosX(int mouseposx);
-	void setMousePosY(int mouseposy);
-	void setStartPosX(int startposx);
-	void setStartPosY(int startposy);
-	void setEndPosX(int endposx);
-	void setEndPosY(int endposy);
-	void setPlayerPosX(int playerposx);
-	void setPlayerPosY(int playerposy);
+	void setMousePosX(float mouseposx);
+	void setMousePosY(float mouseposy);
+	void setStartPosX(float startposx);
+	void setStartPosY(float startposy);
+	void setEndPosX(float endposx);
+	void setEndPosY(float endposy);
+	void setPlayerPosX(float playerposx);
+	void setPlayerPosY(float playerposy);
 	void setRadius(int radius);
 	void setArrows(int arrows);
 	void setIsArrows(int isArrows);
-	void setDrop(int drop);
 
 };

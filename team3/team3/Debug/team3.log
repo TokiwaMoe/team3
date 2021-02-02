@@ -1,2 +1,29 @@
-﻿  main.cpp
+﻿  Player.cpp
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(27,15): warning C4305: '=': 'double' から 'float' へ切り詰めます。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(70,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(71,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(76,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(77,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(94,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(95,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(100,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(101,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(120,27): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(121,27): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(246,38): warning C4244: 'return': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(247,37): warning C4244: 'return': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(248,35): warning C4244: 'return': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(249,35): warning C4244: 'return': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(250,38): warning C4244: 'return': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(251,38): warning C4244: 'return': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(257,32): warning C4244: 'return': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(258,41): warning C4244: 'return': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(260,64): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(261,64): warning C4244: '=': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(274,43): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(274,34): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(274,23): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(274,12): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(277,44): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\motim\OneDrive\ドキュメント\team3\team3\team3\Player.cpp(277,23): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   team3.vcxproj -> C:\Users\motim\OneDrive\ドキュメント\team3\team3\Debug\team3.exe
