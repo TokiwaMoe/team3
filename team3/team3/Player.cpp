@@ -2,6 +2,7 @@
 #include "stdio.h"
 #include "Player.h"
 #include "math.h"
+#include <stdlib.h>
 
 Player::Player(
 	float startPosX,
@@ -30,6 +31,7 @@ Player::Player(
 	Drawflag = 0;
 	MouseInput = 0;
 	MouseInputOld = 0;
+	canDrop = 1;
 
 	flame++;
 
@@ -39,22 +41,48 @@ Player::Player(
 Player::~Player() {}
 
 void Player::update(Stage* stage) {
-	move();
+	move(stage);
 	collide2Stage(stage);
 }
 
-void Player::move() {
+void Player::move(Stage* stage) {
+	canDrop = 1;
 
 	playerOldPosX = playerPosX;
 	playerOldPosY = playerPosY;
-	
+
 	MouseInputOld = MouseInput;
 	MouseInput = GetMouseInput();
 
 	playerOldPosY = playerPosY;
 
 	GetMousePoint(&MousePosX,
-		&MousePosY);
+				  &MousePosY);
+
+	if (stage->getMapChip(MousePosY / stage->getBlockSize(), MousePosX / stage->getBlockSize()) == 1) {
+		canDrop = 0;
+	}
+
+	float hypotenuse = sqrtf(pow(endPosX - startPosX, 2) + pow(endPosY - startPosY, 2));
+	int scaleCount = labs(hypotenuse) / radius;
+	float sinS2E = (endPosY - startPosY) / hypotenuse;
+	float cosS2E = (endPosX - startPosX) / hypotenuse;
+
+	int midPosX[50];
+	int midPosY[50];
+	int threshold = 16;
+
+	for (int i = 1; i < scaleCount + 1; i++) {
+		midPosX[i] = startPosX + stage->getBlockSize() / 2 * cosS2E * i;
+		midPosY[i] = startPosY + stage->getBlockSize() / 2 * sinS2E * i;
+
+		if (stage->getMapChip(midPosY[i] / stage->getBlockSize(), midPosX[i] / stage->getBlockSize()) == 1) { canDrop = 0; }
+		if (stage->getMapChip((midPosY[i] + threshold) / stage->getBlockSize(), (midPosX[i] + threshold) / stage->getBlockSize()) == 1) { canDrop = 0; }
+		if (stage->getMapChip((midPosY[i] - threshold) / stage->getBlockSize(), (midPosX[i] - threshold) / stage->getBlockSize()) == 1) { canDrop = 0; }
+		if (stage->getMapChip((midPosY[i] + threshold) / stage->getBlockSize(), (midPosX[i] - threshold) / stage->getBlockSize()) == 1) { canDrop = 0; }
+		if (stage->getMapChip((midPosY[i] - threshold) / stage->getBlockSize(), (midPosX[i] + threshold) / stage->getBlockSize()) == 1) { canDrop = 0; }
+
+	}
 
 	if (arrows == 0) {
 		//trigger
@@ -73,8 +101,14 @@ void Player::move() {
 
 		//release
 		if (MouseInputOld == 1 && MouseInput != 1) {
-			endPosX = MousePosX;
-			endPosY = MousePosY;
+			if (canDrop == 1) {
+				endPosX = MousePosX;
+				endPosY = MousePosY;
+			} else {
+				endPosX = startPosX;
+				endPosY = startPosY;
+				arrows--;
+			}
 		}
 	}
 
@@ -97,8 +131,14 @@ void Player::move() {
 
 		//release
 		if (MouseInputOld == 1 && MouseInput != 1) {
-			endPosX = MousePosX;
-			endPosY = MousePosY;
+			if (canDrop == 1) {
+				endPosX = MousePosX;
+				endPosY = MousePosY;
+			} else {
+				endPosX = startPosX;
+				endPosY = startPosY;
+				arrows--;
+			}
 		}
 	}
 
@@ -140,105 +180,50 @@ void Player::move() {
 }
 
 void Player::collide2Stage(Stage* stage) {
-	DrawFormatString(100, 100, GetColor(255, 255, 255), "playerPosX: %f", playerPosX);
-	DrawFormatString(100, 120, GetColor(255, 255, 255), "playerPosY: %f", playerPosY);
-	DrawFormatString(100, 140, GetColor(255, 255, 255), "playerOldPosX: %f", playerOldPosX);
-	DrawFormatString(100, 160, GetColor(255, 255, 255), "playerOldPosY: %f", playerOldPosY);
-	
 	// 四隅の座標のマップチップ番号
-	int leftTopX = (static_cast<int>(playerPosX) - radius)/stage->getBlockSize();
-	int leftTopY = (static_cast<int>(playerPosY) - radius)/stage->getBlockSize();
-	
+	int leftTopX = (static_cast<int>(playerPosX) - radius) / stage->getBlockSize();
+	int leftTopY = (static_cast<int>(playerPosY) - radius) / stage->getBlockSize();
+
 	int rightTopX = (static_cast<int>(playerPosX) + radius) / stage->getBlockSize();
 	int rightTopY = (static_cast<int>(playerPosY) - radius) / stage->getBlockSize();
-	
+
 	int rightBottomX = (static_cast<int>(playerPosX) + radius) / stage->getBlockSize();
 	int rightBottomY = (static_cast<int>(playerPosY) + radius) / stage->getBlockSize();
-	
+
 	int leftBottomX = (static_cast<int>(playerPosX) - radius) / stage->getBlockSize();
 	int leftBottomY = (static_cast<int>(playerPosY) + radius) / stage->getBlockSize();
 
-	// leftTop
-	if (stage->getMapChip(leftTopY, leftTopX) == 1 ) {
-		playerPosX = playerOldPosX + 1;
-		playerPosY = playerPosY + 1;
-		/*endPosX = playerOldPosX;
-		endPosY = playerOldPosY;*/
+	// top
+	if (stage->getMapChip(leftTopY, leftTopX) == 1 || stage->getMapChip(rightTopY, rightTopX) == 1) {
+		playerPosX = playerOldPosX;
+		playerPosY = playerOldPosY;
+		endPosX = playerOldPosX;
+		endPosY = playerOldPosY;
 	}
 
-	// righttop
-	if (stage->getMapChip(rightTopY, rightTopX) == 1) {
-		playerPosX = playerPosX - 1;
-		playerPosY = playerPosY + 1;
-		//endPosY = playerOldPosY;
+	// bottom
+	if (stage->getMapChip(leftBottomY, leftBottomX) == 1 || stage->getMapChip(rightBottomY, rightBottomX) == 1) {
+		playerPosX = playerOldPosX;
+		playerPosY = playerOldPosY;
+		endPosX = playerOldPosX;
+		endPosY = playerOldPosY;
 	}
 
-	//// 下
-	//if (stage->getMapChip(rightBottomY, rightBottomX) == 1 && stage->getMapChip(leftBottomY, leftBottomX) == 1) {
-	//	playerPosY = playerOldPosY;
-	//	endPosY = playerOldPosY;
-	//}
-	//
-	//// 左
-	//if (stage->getMapChip(leftTopY , leftTopX) == 1 && stage->getMapChip(leftBottomY, leftBottomX)) {
-	//	playerPosX = playerOldPosX;
-	//	endPosX = playerOldPosX;
-	//}
+	// left
+	if (stage->getMapChip(leftTopY, leftTopX) == 1 || stage->getMapChip(leftBottomY, leftBottomX) == 1) {
+		playerPosX = playerOldPosX;
+		playerPosY = playerOldPosY;
+		endPosX = playerOldPosX;
+		endPosY = playerOldPosY;
+	}
 
-
-	//// 右
-	//if (stage->getMapChip(rightBottomY, rightBottomX) == 1 && stage->getMapChip(rightTopY, rightTopX) == 1) {
-	//	playerPosX = playerOldPosX ;
-	//	endPosX = playerOldPosX;
-	//}
-
-
-
-////マップの当たり判定//
-////右
-//if (stage->getMap
-//	[static_cast<int>(player->getPlayerPosY() - player->getRadius() * 2) / blocksize]
-//[static_cast<int>(player->getPlayerPosX() + player->getRadius() + 1) / blocksize] == 1
-	 
-//	&&
-//	map[static_cast<int>(player->getPlayerPosY() + player->getRadius() * 2) / blocksize][static_cast<int>(player->getPlayerPosX() + player->getRadius() + 1) / blocksize] == 1) {
-
-//	player->setPlayerPosX(player->getPlayerPosX() - 1);
-//	player->setEndPosX(player->getPlayerPosX());
-
-//}
-
-////左
-//if (map[static_cast<int>(player->getPlayerPosY() - player->getRadius()) / blocksize][static_cast<int>(player->getPlayerPosX() - player->getRadius() - 1) / blocksize] == 1 &&
-//	map[static_cast<int>(player->getPlayerPosY() + player->getRadius()) / blocksize][static_cast<int>(player->getPlayerPosX() - player->getRadius() - 1) / blocksize] == 1) {
-
-//	player->setPlayerPosX(player->getPlayerPosX() + 1);
-//	player->setEndPosX(player->getPlayerPosX());
-
-//}
-
-////下
-//if (map[static_cast<int>(player->getPlayerPosY() + player->getRadius() + 1) / blocksize][static_cast<int>(player->getPlayerPosX() - player->getRadius()) / blocksize] == 1 &&
-//	map[static_cast<int>(player->getPlayerPosY() + player->getRadius() + 1) / blocksize][static_cast<int>(player->getPlayerPosX() + player->getRadius()) / blocksize] == 1) {
-
-//	player->setPlayerPosY(player->getPlayerPosY() - player->getDrop());
-//	player->setPlayerPosY(player->getPlayerOldPosY());
-//	player->setEndPosY(player->getPlayerPosY());
-
-//}
-
-////上
-//if (map[static_cast<int>(player->getPlayerPosY() - player->getRadius() - 1) / blocksize][static_cast<int>(player->getPlayerPosX() - player->getRadius()) / blocksize] == 1 &&
-//	map[static_cast<int>(player->getPlayerPosY() - player->getRadius() - 1) / blocksize][static_cast<int>(player->getPlayerPosX() + player->getRadius()) / blocksize] == 1) {
-
-//	player->setPlayerPosY(player->getPlayerPosY() + 1);
-//	player->setEndPosY(player->getPlayerPosY());
-
-//}
-//
-//}
-//	}
-
+	// right
+	if (stage->getMapChip(rightTopY, rightTopX) == 1 || stage->getMapChip(rightBottomY, rightBottomX) == 1) {
+		playerPosX = playerOldPosX;
+		playerPosY = playerOldPosY;
+		endPosX = playerOldPosX;
+		endPosY = playerOldPosY;
+	}
 }
 
 int Player::getMousePosX() { return MousePosX; }
@@ -271,7 +256,11 @@ void Player::setIsArrows(int isArrows) { this->isArrows = isArrows; }
 
 void Player::draw() {
 	if (Drawflag == 1) {
-		DrawLine(startPosX, startPosY, endPosX, endPosY, GetColor(255, 255, 255), 2);
+		if (canDrop == 1) {
+			DrawLine(startPosX, startPosY, endPosX, endPosY, GetColor(255, 255, 255), 2);
+		} else {
+			DrawLine(startPosX, startPosY, endPosX, endPosY, GetColor(217, 0, 0), 2);
+		}
 	}
 
 	DrawGraph(playerPosX - radius, playerPosY - radius, character, TRUE);
