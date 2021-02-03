@@ -14,6 +14,7 @@ private:
 	float endPosY;
 	int Drawflag;
 	int character;
+	int canDrop;
 
 	//ƒvƒŒƒCƒ„[•Ï”
 	float playerPosX;
@@ -49,7 +50,7 @@ public:
 
 	~Player();
 	void update(Stage* stage);
-	void move();
+	void move(Stage* stage);
 	void collide2Stage(Stage* stage);
 	void isAlive();
 	void draw();
