@@ -12,7 +12,8 @@ Player::Player(
 	float playerPosY,
 	int radius,
 	int arrows,
-	int isArrows
+	int isArrows,
+	int isAlive
 ) {
 	this->startPosX = startPosX;
 	this->startPosY = startPosY;
@@ -51,7 +52,6 @@ void Player::move() {
 	MouseInputOld = MouseInput;
 	MouseInput = GetMouseInput();
 
-	playerOldPosY = playerPosY;
 
 	GetMousePoint(&MousePosX,
 		&MousePosY);
@@ -128,13 +128,12 @@ void Player::move() {
 	}
 
 	if (isArrows == 0) {
-		//drop = 9.8 * (flame / 50.0);
-		//playerPosY = playerPosY + drop;
+		drop = 9.8 * (flame / 50.0);
+		playerPosY = playerPosY + drop;
 	}
 
 
 	if (arrows > 5) {
-
 		Drawflag = 0;
 	}
 }
@@ -241,6 +240,13 @@ void Player::collide2Stage(Stage* stage) {
 
 }
 
+void Player::isAlive()
+{
+	if (playerPosY - radius >= 800) {
+		alive = 0;
+	}
+}
+
 int Player::getMousePosX() { return MousePosX; }
 int Player::getMousePosY() { return  MousePosY; }
 int Player::getStartPosX() { return  startPosX; }
@@ -256,6 +262,7 @@ int Player::getMouseInputOld() { return  MouseInputOld; }
 int Player::getIsArrows() { return isArrows; }
 int Player::getDrop() { return drop; }
 int Player::getPlayerOldPosY() { return playerOldPosY; }
+int Player::getisAlive() { return alive; }
 
 void Player::setMousePosX(float mouseposx) { this->MousePosX = mouseposx; }
 void Player::setMousePosY(float mouseposy) { this->MousePosY = mouseposy; }
@@ -268,6 +275,7 @@ void Player::setPlayerPosY(float playerposy) { this->playerPosY = playerposy; }
 void Player::setRadius(int radius) { this->radius = radius; }
 void Player::setArrows(int arrows) { this->arrows = arrows; }
 void Player::setIsArrows(int isArrows) { this->isArrows = isArrows; }
+void Player::setIsAlive(int isAlive) { this->alive = isAlive; }
 
 void Player::draw() {
 	if (Drawflag == 1) {

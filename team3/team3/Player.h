@@ -23,6 +23,7 @@ private:
 	int radius;
 	float drop;
 	int isArrows;
+	int alive;
 	
 	//ˆÚ“®•Ï”
 	int maxflame;
@@ -42,13 +43,15 @@ public:
 		float playerPosY,
 		int radius,
 		int arrows,
-		int isArrows
+		int isArrows,
+		int isAlive
 	);
 
 	~Player();
 	void update(Stage* stage);
 	void move();
 	void collide2Stage(Stage* stage);
+	void isAlive();
 	void draw();
 
 	int getMousePosX();
@@ -66,6 +69,7 @@ public:
 	int getIsArrows();
 	int getDrop();
 	int getPlayerOldPosY();
+	int getisAlive();
 
 	void setMousePosX(float mouseposx);
 	void setMousePosY(float mouseposy);
@@ -78,5 +82,6 @@ public:
 	void setRadius(int radius);
 	void setArrows(int arrows);
 	void setIsArrows(int isArrows);
+	void setIsAlive(int isAlive);
 
 };
